@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
             // Walk animation
             animator.SetFloat("movement", 1);
-            Debug.Log("Walking state.");
         }
 
         else
