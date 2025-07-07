@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private Animator animator;
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed = 720f;    // Degrees per second
 
@@ -30,6 +32,15 @@ public class PlayerMovement : MonoBehaviour
                 targetRotation,
                 rotationSpeed * Time.deltaTime
             );
+
+            // Walk animation
+            animator.SetFloat("movement", 1);
+            Debug.Log("Walking state.");
+        }
+
+        else
+        {
+            animator.SetFloat("movement", 0);   // Idle animation
         }
 
         // Apply gravity
@@ -38,5 +49,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 finalMove = (move * moveSpeed) + (playerVelocity.y * Vector3.up);
 
         characterController.Move(finalMove * Time.deltaTime);
+        
     }
 }
