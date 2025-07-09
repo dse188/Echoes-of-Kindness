@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private float rayDistance;
-    //[SerializeField] private TextMeshPro showInteractPopUp;
     [SerializeField] private GameObject interactPopUpContainer;
 
     // Start is called before the first frame update
@@ -23,16 +22,13 @@ public class Player : MonoBehaviour
 
         if(Physics.Raycast(ray, out RaycastHit hit, rayDistance, interactableLayer))
         {
-            
-            //hit.collider.GetComponent<Interactable>()?.Interact();
-
             // Tells which collider is hit by the ray
             //Debug.Log("Hit object: " + hit.collider.gameObject.name);
 
-            // "Press 'E' to interact" message pop up
-            interactPopUpContainer.gameObject.SetActive(true);
+            
+            interactPopUpContainer.gameObject.SetActive(true); // "Press 'E' to interact" message pop up
 
-            if(Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 hit.collider.GetComponent<Interactable>()?.Interact();
             }

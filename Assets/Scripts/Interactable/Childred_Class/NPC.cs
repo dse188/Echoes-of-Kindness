@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class NPC : Interactable
 {
+    [SerializeField] private Animator animator;
+    [SerializeField] private string[] dialogueLines;
 
     // Start is called before the first frame update
     void Start()
@@ -14,13 +17,12 @@ public class NPC : Interactable
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public override void Interact()
     {
-        //Debug.Log("Yay you interacted with: " + this.gameObject.name);
-        Debug.Log("My wallet is missing! What am I gonna do?!");
+        animator?.SetBool("inDialogue", true);
+        Dialogue_System.Instance.StartDialogue(dialogueLines);
     }
-
 }

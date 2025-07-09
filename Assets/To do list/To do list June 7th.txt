@@ -6,3 +6,7 @@ To do list June 7th:
 2) Work on 3rd person camera
 
 3) Bonus: Adjust Raycast so that it can detect Interactable objects if it's within it's vicinity (only from the front of the player).
+
+
+Try to do:
+State machine for when player is in a dialogue	---> Helps keep the code base modular and loosely coupled
