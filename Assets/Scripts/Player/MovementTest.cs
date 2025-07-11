@@ -22,6 +22,7 @@ public class MovementTest : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        rb.useGravity = true;
     }
 
     // Update is called once per frame
@@ -44,8 +45,11 @@ public class MovementTest : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection.y = 0f;
 
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        rb.velocity = moveDirection.normalized * moveSpeed + new Vector3(0, rb.velocity.y, 0);
+
+        //rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
         if(horizontalInput != 0 || verticalInput != 0)
         {
