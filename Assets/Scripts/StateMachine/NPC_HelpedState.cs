@@ -6,11 +6,11 @@ public class NPC_HelpedState : NPC_BaseState
 {
     public override void EnterState(NPC_StateManager npc)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("NPC entered Helped State!");
     }
 
     public override void UpdateState(NPC_StateManager npc)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

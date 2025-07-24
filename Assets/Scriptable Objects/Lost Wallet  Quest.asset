@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cafbf5d752a22194899b3f79e988305b, type: 3}
+  m_Name: Lost Wallet  Quest
+  m_EditorClassIdentifier: 
+  questName: Lost Wallet
+  description: Help [NPC name] find his missing wallet and bring it back to him.
+  objectives: []
+  isCompleted: 0

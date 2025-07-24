@@ -25,9 +25,9 @@ public class NPC_StateManager : MonoBehaviour
         currentState.UpdateState(this);
     }
 
-    public void SwitchState(NPC_BaseState state)
+    public void SwitchState(NPC_BaseState newState)
     {
-        currentState = state;
-        state.EnterState(this);
+        currentState = newState;
+        currentState.EnterState(this);
     }
 }

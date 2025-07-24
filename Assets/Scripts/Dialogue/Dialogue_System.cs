@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Dialogue_System : MonoBehaviour
 {
@@ -13,16 +14,18 @@ public class Dialogue_System : MonoBehaviour
 
     private string[] lines;
     private int index;
-    private bool isTyping;
+    private Action onDialogueComplete;
 
     private void Awake()
     {
-        Instance = this;
-        
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         
     }
 
@@ -49,11 +52,11 @@ public class Dialogue_System : MonoBehaviour
 
     }
 
-    public void StartDialogue(string[] dialogueLine)
+    public void StartDialogue(string[] dialogueLine, Action callback = null)
     {
         index = 0;
-
         lines = dialogueLine;
+        onDialogueComplete = callback;
 
         dialogueBox.SetActive(true);
         dialogueText.text = string.Empty;
@@ -64,7 +67,6 @@ public class Dialogue_System : MonoBehaviour
     {
         foreach(char c in lines[index])
         {
-            isTyping = true;
             dialogueText.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
@@ -87,5 +89,6 @@ public class Dialogue_System : MonoBehaviour
     private void EndDialogue()
     {
         dialogueBox.SetActive(false);
+        onDialogueComplete?.Invoke();
     }
 }

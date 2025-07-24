@@ -9,12 +9,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float rayDistance;
     [SerializeField] private GameObject interactPopUpContainer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -22,15 +16,11 @@ public class Player : MonoBehaviour
 
         if(Physics.Raycast(ray, out RaycastHit hit, rayDistance, interactableLayer))
         {
-            // Tells which collider is hit by the ray
-            //Debug.Log("Hit object: " + hit.collider.gameObject.name);
-
-            
             interactPopUpContainer.gameObject.SetActive(true); // "Press 'E' to interact" message pop up
-
             if (Input.GetKeyDown(KeyCode.E))
             {
-                hit.collider.GetComponent<Interactable>()?.Interact();
+                var interactable = hit.collider.GetComponent<Interactable>();
+                interactable?.Interact();
             }
         }
         else

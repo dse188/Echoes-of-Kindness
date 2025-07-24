@@ -7,6 +7,10 @@ Bonus: Adjust Raycast so that it can detect Interactable objects if it's within 
 
 
 Core Systems:
+
+0) Implement a Quest Manager.
+	- Stores, tracks, and updates active quests
+
 1) Implement a State Machine for NPC:
 	- Idle
 	- Waiting
