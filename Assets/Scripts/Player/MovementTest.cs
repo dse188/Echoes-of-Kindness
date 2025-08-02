@@ -55,5 +55,9 @@ public class MovementTest : MonoBehaviour
         {
             animator.SetFloat("movement", 1);
         }
+        else
+        {
+            animator.SetFloat("movement", 0);
+        }
     }
 }
