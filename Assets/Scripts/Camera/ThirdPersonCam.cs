@@ -9,7 +9,6 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform playerObj;
     [SerializeField] private Rigidbody rb;
-    //[SerializeField] private Sprite sprite;
 
     public float rotationSpeed;
 
@@ -23,15 +22,23 @@ public class ThirdPersonCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // rotate orientation
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDir.normalized;
+        // Get camera-relative flat forward and right
+        Vector3 camForward = transform.forward;
+        camForward.y = 0f;
+        camForward.Normalize();
 
-        // rotate player object
+        Vector3 camRight = transform.right;
+        camRight.y = 0f;
+        camRight.Normalize();
+
+        orientation.forward = camForward;
+
+        // Get input direction relative to camera
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        Vector3 inputDir = camForward * verticalInput + camRight * horizontalInput;
 
+        // Rotate player toward movement direction
         if (inputDir != Vector3.zero)
         {
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
