@@ -39,6 +39,7 @@ public class Capsule_Movement : MonoBehaviour, IMovementData
         get { return currentVelocity;  }
     }
 
+
     private bool onGround;
     public bool OnGround
     {
@@ -57,7 +58,7 @@ public class Capsule_Movement : MonoBehaviour, IMovementData
     private void Update()
     {
         // ground check
-        onGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        onGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.05f, whatIsGround);
 
         MyInput();
         SpeedControl();

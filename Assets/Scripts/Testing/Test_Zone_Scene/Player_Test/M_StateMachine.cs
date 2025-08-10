@@ -6,11 +6,17 @@ public class M_StateMachine : MonoBehaviour
 {
     [SerializeField] MonoBehaviour movementSource;
     private IMovementData m_player;
+    //private IMovementAnimator m_animator;
+
 
     private M_IState currentState;
     public M_Idle idleState = new M_Idle();
     public M_Walk walkState = new M_Walk();
     public M_Jump jumpState = new M_Jump();
+
+
+    /*[Header("Animation Reference")]
+    [SerializeField] Animator animator;*/
 
     private void Start()
     {
@@ -21,6 +27,7 @@ public class M_StateMachine : MonoBehaviour
     private void Awake()
     {
         m_player = (IMovementData)movementSource;
+        //m_animator = (IMovementAnimator)movementSource;
 
         if (m_player == null)
         {
@@ -44,12 +51,15 @@ public class M_StateMachine : MonoBehaviour
 
     public float Player_MovementValue()
     {
+        //animator.SetFloat("Move speed", m_player.CurrentVelocity.magnitude);
         return m_player.CurrentVelocity.magnitude;
         //return Mathf.Round(m_player.CurrentVelocity.magnitude);      // faster at transitioning from walkState to idleState since it quickly rounds down to zero when slowing down.
     }
 
     public bool Player_OnGround()
     {
+        
         return m_player.OnGround;
     }
+
 }
